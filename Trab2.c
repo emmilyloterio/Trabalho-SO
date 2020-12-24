@@ -6,7 +6,7 @@
 #define N 20
 	int contPostIt=0;
 	int TAM;  // numero de usuarios
-	sem_t semaforo1 ;
+	sem_t semaforo1 ;  //declarando os semaforos
 	sem_t semaforo2 ;
 	
 
@@ -94,7 +94,7 @@ int main(int argc, char *argv[]) {
 		}
 		pthread_create (&thPombo , NULL , *pombo , NULL);
 		
-		pthread_join(thPombo, NULL);
+		pthread_join(thPombo, NULL);       // terminando por inteiro a thread
 		for (j=0 ; j<TAM ; j++){
 			pthread_join(thUsuario[j], NULL);
 		}
