@@ -5,7 +5,7 @@
 #include <unistd.h>
 #define N 20
 	int contPostIt=0;
-	int TAM;  // numero de usuarios
+	int TAM;           // numero de usuarios
 	sem_t semaforo1 ;  //declarando os semaforos
 	sem_t semaforo2 ;
 	
@@ -30,7 +30,7 @@ void leva_mochila_ate_B_e_volta(){
 
 
 
-static void * usuario() { 		
+static void * usuario() {  //thread usuario		
  
  	while(1){
  		
@@ -53,7 +53,7 @@ static void * usuario() {
  	
 } 
 
-static void * pombo () {
+static void * pombo () {  //thread pombo
 
 	 while(1){
 	 	
@@ -79,24 +79,24 @@ static void * pombo () {
 int main(int argc, char *argv[]) {
 
 		printf("Numero de usuarios: ");
-		scanf("%d",&TAM);
+		scanf("%d",&TAM);               //coletando o numero de usuarios
 		printf("\n");
 		int j;
 		sem_init(&semaforo1,0,1);	// iniciando os semaforos de controle
 		sem_init(&semaforo2,0,0);
 
 	
-		pthread_t thPombo;
+		pthread_t thPombo;              //declarando as threads pombo e usuario
 		pthread_t thUsuario[TAM];
 			
 		for (j=0 ; j<TAM ; j++){		// criando o grupo de trheads usuario
 			pthread_create (&thUsuario[j] , NULL , *usuario , NULL);
 		}
-		pthread_create (&thPombo , NULL , *pombo , NULL);
+		pthread_create (&thPombo , NULL , *pombo , NULL);  //criando a thread pombo
 		
-		pthread_join(thPombo, NULL);       // terminando por inteiro a thread
+		pthread_join(thPombo, NULL);       // iniciando a thread pombo
 		for (j=0 ; j<TAM ; j++){
-			pthread_join(thUsuario[j], NULL);
+			pthread_join(thUsuario[j], NULL);   //iniciando as threads usuario
 		}
 	    
 
