@@ -1,3 +1,7 @@
+/*Para compilar o programa use:  gcc -o pg1 Trab2.c -lpthread
+  Para executar: ./pg1 */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
